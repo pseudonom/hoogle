@@ -113,7 +113,7 @@ setPriority pkg mod x = x{itemPriority = pri}
 setModuleURL (Just pkg) _ x | itemLevel x == 1 = x{itemURL=if null $ itemURL x then f $ itemName x else itemURL x}
     where f xs = if "http://hackage.haskell.org/package/" `isPrefixOf` itemURL pkg
                  then "http://hackage.haskell.org/packages/archive/" ++ itemName pkg ++ "/latest/doc/html/" ++ file
-                 else takeDirectory (itemURL pkg) ++ "/" ++ file
+                 else itemURL pkg ++ "/" ++ file
               where file = reps '.' '-' xs ++ ".html"
 setModuleURL _ _ x = x
 

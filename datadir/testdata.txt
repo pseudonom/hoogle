@@ -1,0 +1,58 @@
+-- data for tests.txt
+
+@package testdata
+
+module Testdata
+
+() :: ()
+(,) :: a -> b -> (a,b)
+type FilePath = String
+type String = [Char]
+data Unit
+Unit :: Unit
+data Maybe a
+Just :: a -> Maybe a
+Nothing :: Maybe a
+id :: a -> a
+unsafeCoerce :: a -> b
+map :: (a -> b) -> [a] -> [b]
+flipmap :: [a] -> (a -> b) -> [b]
+fmap :: Functor m => (a -> b) -> m a -> m b
+unfmap :: (a -> b) -> m a -> m b
+eq :: Eq a => (a -> b) -> m a -> m b
+fst :: (a,b) -> a
+snd :: (a,b) -> b
+(==) :: Eq a => a -> a -> Bool
+instance Eq Bool
+instance Functor []
+not :: Bool -> Bool
+string :: String
+chars :: [Char]
+
+int2 :: Char -> Int -> Int
+instance Ord Bar
+ordId :: Ord a => a -> a
+nonId :: Non a => a -> a
+
+-- check bug # 352
+( # ) :: Int
+
+everywhere :: Data a => (forall local. Data local => local -> local) -> a -> a
+class Eq2 a b => Ord2 a b | a -> b
+
+@entry package pkg1
+@entry package pkg2
+
+module Foo.Bar
+
+-- | Documentation for <i>foo_bar</i>
+foo_bar :: Unit
+fst :: (Unit,Unit) -> Unit
+fst2 :: (Unit,Unit) -> Unit
+
+module Bar.Foo
+bar_foo :: Unit
+fst :: (Bar,Bar) -> Bar
+
+type Alias1 a = Alias2 a
+aliases :: Alias1 (Alias1 a) -> a

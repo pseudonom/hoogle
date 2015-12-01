@@ -1,0 +1,93 @@
+
+#export header css js query
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head profile="http://a9.com/-/spec/opensearch/1.1/">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>$&query$ $&queryHyphen$ Hoogle</title>
+        <link type="text/css" rel="stylesheet" href="res/hoogle.css?version=$%css$" />
+        <link type="image/png" rel="icon" href="res/favicon.png" />
+		<link type="image/png" rel="apple-touch-icon" href="res/favicon57.png" />
+        <link type="application/opensearchdescription+xml" rel="search" href="res/search.xml" title="Hoogle" />
+        <script type="text/javascript" src="res/jquery.js?version=$%js$"> </script>
+        <script type="text/javascript" src="res/jquery-cookie.js?version=$%js$"> </script>
+        <script type="text/javascript" src="res/hoogle.js?version=$%js$"> </script>
+    </head>
+    <body>
+<div id="links">
+    <ul id="top-menu">
+        <li id="instant" style="display:none;">
+            <a href="javascript:setInstant()">Instant is <span id="instantVal">off</span></a>
+        </li>
+        <li id="plugin" style="display:none;"><a href="javascript:searchPlugin()">Search plugin</a></li>
+        <li><a href="https://github.com/ndmitchell/hoogle/blob/master/README.md">Manual</a></li>
+        <li>$#homepage$</li>
+    </ul>
+</div>
+<form action="." method="get" id="search">
+    <a id="logo" href="http://haskell.org/hoogle/">
+        <img src="res/hoogle.png" width="160" height="58" alt="Hoogle"
+    /></a>
+    <input name="hoogle" id="hoogle" class="HOOGLE_REAL" type="text" autocomplete="off" accesskey="1" value="$&query$" />
+    <input id="submit" type="submit" value="Search" />
+</form>
+<div id="body">
+
+
+#homepage
+<a href="http://www.haskell.org/">haskell.org</a>
+
+
+#export footer version
+            <div class="push"></div>
+        </div>
+        <div id="footer">&copy; <a href="http://community.haskell.org/~ndm/">Neil Mitchell</a> 2004-2013, version $&version$</div>
+    </body>
+</html>
+
+
+#search
+<a href="?hoogle=$%query$">$&query$</a>
+
+
+#export welcome
+<h1><b>Welcome to Hoogle</b></h1>
+<ul id="left">
+<li><b>Links</b></li>
+<li><a href="http://haskell.org/">Haskell.org</a></li>
+<li><a href="http://hackage.haskell.org/">Hackage</a></li>
+<li><a href="http://www.haskell.org/ghc/docs/latest/html/users_guide/">GHC Manual</a></li>
+<li><a href="http://www.haskell.org/ghc/docs/latest/html/libraries/">Libraries</a></li>
+</ul>
+<p>
+    Hoogle is a Haskell API search engine, which allows you to search many standard Haskell libraries
+    by either function name, or by approximate type signature.
+</p>
+<p id="example">
+    Example searches:<br/>
+    $query=map$ $#search$<br/>
+    $query=(a -> b) -> [a] -> [b]$ $#search$<br/>
+    $query=Ord a => [a] -> [a]$ $#search$<br/>
+    $query=Data.Map.insert$ $#search$<br/>
+	<br/>Enter your own search at the top of the page.
+</p>
+<p>
+    The <a href="http://www.haskell.org/haskellwiki/Hoogle">Hoogle manual</a> contains more details,
+    including further details on search queries, how to install Hoogle as a command line application
+    and how to integrate Hoogle with Firefox/Emacs/Vim etc.
+</p>
+<p>
+    I am very interested in any feedback you may have. Please
+    <a href="http://community.haskell.org/~ndm/contact/">email me</a>, or add an entry to my
+    <a href="http://code.google.com/p/ndmitchell/issues/list">bug tracker</a>.
+</p>
+
+
+#export parseError
+<h1>$!errFormat$</h1>
+<p>
+	<b>Parse error:</b> $&errMessage$
+</p><p>
+	For information on what queries should look like, see the
+	<a href="http://www.haskell.org/haskellwiki/Hoogle">user manual</a>.
+</p>

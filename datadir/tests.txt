@@ -1,0 +1,127 @@
+-- these tests only rely on the testdata database
+
+id +testdata
+id
+
+map +testdata
+map
+fmap
+@reorder unfmap
+
+"(a -> b) -> [a] -> [b]" +testdata
+map
+fmap
+unfmap
+
+"(a -> b) -> [a] -> [b]" +testdata
+map
+flipmap
+
+"a -> b" +testdata
+unsafeCoerce
+
+"(c,d) -> d" +testdata
+snd
+fst
+
+"(c,d) -> c" +testdata
+fst
+snd
+
+"Bool -> Bool -> Bool" +testdata
+(==)
+
+"Bool -> Bool" +testdata
+not
+(==)
+
+:: String +testdata
+string
+chars
+
+[Char] +testdata
+chars
+string
+
+"Functor m => (a -> b) -> m a -> m b" +testdata
+fmap
+unfmap
+eq
+
+-- tests that arguments are not reused
+"Int -> Int -> Int" +testdata
+@not int2
+
+-- test that instances are applied properly
+"Bar -> Bar" +testdata
+ordId
+@reorder id
+nonId
+
+-- test that packages can be searched for
+pkg +testdata
+pkg1
+@reorder pkg2
+
+map --link +testdata
+Testdata map :: (a -> b) -> [a] -> [b] -- http://hackage.haskell.org/packages/archive/testdata/latest/doc/html/Testdata.html#v:map
+
+== --link +testdata
+Testdata (==) :: Eq a => a -> a -> Bool -- http://hackage.haskell.org/packages/archive/testdata/latest/doc/html/Testdata.html#v:-61--61-
+
+-- check for perservation of forall
+everywhere +testdata
+everywhere :: Data a => (forall local. Data local => local -> local) -> a -> a
+
+-- preservation of functional dependencies
+rd2 +testdata
+class Eq2 a b => Ord2 a b | a -> b
+
+:: Just a +testdata
+Did you mean: :: Maybe a +testdata
+
+:: Maybe +testdata
+Did you mean: :: Maybe a +testdata
+
+-- check that () is known, not a warning, and is the first result
+:: () +testdata
+@now () :: ()
+
+to +testdata
+No results
+
+a to b +testdata
+Did you mean: a -> b +testdata
+
+a to to b +testdata
+No results
+
+-- case insensitive module names
+BAR.bar_foo +testdata
+bar_foo
+
+-- lower case module prefixes via .
+bar.bar_foo +testdata
+bar_foo
+
+-- #372, proper searching for modules
+foo.bar_foo +testdata
+bar_foo
+
+bar.foo.bar_foo +testdata
+bar_foo
+
+bar.fo.bar_foo +testdata
+bar_foo
+
+ba.foo.bar_foo +testdata
+@now No results
+
+ar.foo bar_foo +testdata
+@now No results
+
+"Alias1 (Alias1 a) -> a" +testdata
+aliases
+
+"Alias2 (Alias2 a) -> a" +testdata
+aliases

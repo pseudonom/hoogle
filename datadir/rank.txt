@@ -1,0 +1,66 @@
+-- a list of examples
+-- used to generate a scoring system
+
+@package rank
+module Rank
+type String = [Char]
+type FilePath = String
+
+
+@rank Ord a => [a] -> [a]
+Ord a => a -> [a] -> [a]
+[a] -> [a]
+a -> [a] -> [a]
+
+@rank Ord a => [a] -> [a]
+[a] -> [a]
+Int -> [a] -> [a]
+String -> String
+Int -> [Char] -> [Char]
+
+@rank Ord a => [a] -> [a]
+[a] -> [a]
+Ord a => a -> [a]
+
+@rank [a] -> [b]
+(a -> b) -> [a] -> [b]
+[a] -> [a]
+Eq a => [a] -> [a]
+
+@rank Int -> Bool
+a -> Int -> Bool
+a -> Bool
+
+@rank a -> a
+Int -> a -> a
+a -> m a
+a -> b
+
+@rank a -> b
+a -> b
+a -> b -> a
+a -> a
+Int -> a
+
+@rank [a] -> a
+[a] -> Int -> a
+Ord a => [a] -> a
+[a] -> Bool
+
+@rank a -> b -> c
+a -> b -> c -> d
+Int -> b -> c
+a -> a -> a
+Ord a => a -> a -> a
+
+@rank String
+[Char]
+FilePath
+a -> String
+
+@rank [(a,b)] -> a -> b
+[(a,b)] -> a -> b
+a -> [(a,b)] -> b
+Eq a => [(a,b)] -> a -> b
+[(a,b)] -> a -> Maybe b
+Eq a => a -> [(a,b)] -> Maybe b
